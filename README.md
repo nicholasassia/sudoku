@@ -1,7 +1,10 @@
 # sudoku
 
-its as simple as it sounds.
-
 3x3 sudoku solver
 
-working on a algoritm to scrape sudoku boards from a website and then solving it in real time (not sure how to rn)
+input:
+_ _ _ _ _ _ _ _ _ [1st row of given sudoku, leave blanks as 0's] 
+(repeat for each line..)
+
+output:
+9x9 solved sudoku puzzle
