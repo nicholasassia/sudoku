@@ -22,9 +22,9 @@ This method uses the `requests` package and `BeautifulSoup4` to retrieve and sol
 
 #### **Steps:**  
 1. Run the program.  
-2. Type in **2** when prompted (the web scrape option)
-3. Copy the **link** from the websudoku.com puzzle page (*click on the **difficulty and number** buttom at the bottom of the puzzle to get the link*).  
-4. Paste the **link** into the program when prompted.
+2. Type in 2 when prompted (the web scrape option)
+3. Copy the link from the websudoku.com puzzle page (*click on the difficulty and number buttom at the bottom of the puzzle to get the link*).  
+4. Paste the link into the program when prompted.
 
 ---
 
