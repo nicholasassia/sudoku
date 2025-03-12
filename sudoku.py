@@ -115,7 +115,7 @@ def main():
         return board
     
     def scrape_from_web():
-        url = input("Enter WebSudoku URL (e.g., https://www.websudoku.com/?level=1&set_id=***): ")
+        url = input("Enter websudoku URL (e.g., https://www.websudoku.com/?level=1&set_id=***): ")
         return scrape_websudoku(url)
     
     # maybe i could put some ascii art or something here to make it fun, idk
