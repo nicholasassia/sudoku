@@ -1,7 +1,7 @@
 # sudoku
 
 ## **3x3 Sudoku Solver (NOW WITH WEB SCRAPING omg wow)**  
-*(Only on [websudoku.com](https://websudoku.com))*  
+*(Web scraping only on [websudoku.com](https://websudoku.com))*  
 
 This Python program solves a given 9x9 Sudoku puzzle using a simple backtracking algorithm.  
 
