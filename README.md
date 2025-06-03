@@ -18,13 +18,14 @@ The program will prompt you to enter each row of 9 values individually and solve
 - Repeat this 9 times for each row.  
 
 ### **2) Web Scraping**  
-This method uses the `requests` package and `BeautifulSoup4` to retrieve and solve puzzles directly from **websudoku.com**.  
+This method uses the `requests` package and `BeautifulSoup4` to retrieve and solve puzzles directly from **websudoku.com**.
 
 #### **Steps:**  
 1. Run the program.  
 2. Type in 2 when prompted (the web scrape option)
 3. Copy the link from the websudoku.com puzzle page (*click on the difficulty and number buttom at the bottom of the puzzle to get the link*).  
 4. Paste the link into the program when prompted.
+5. *Alternatively, (as of June 2 2025) you can now select an option 3, which will ask you for the puzzle difficulty and puzzle ID and save you the trouble of finding the link.*
 
 ---
 
