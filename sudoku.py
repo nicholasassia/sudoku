@@ -5,9 +5,13 @@ import re
 
 # Basic printing helper function to print out the 9x9 sudoku board
 def printBoard(board):
-    for i in range(0, 9):
-        for j in range(0, 9):
-            print(board[i][j], end=" ")
+    for i in range(9):
+        if i % 3 == 0 and i != 0:
+            print("- - - - - - - - - - -")
+        for j in range(9):
+            if j % 3 == 0 and j != 0:
+                print("|", end=" ")
+            print(board[i][j] if board[i][j] != 0 else ".", end=" ") #uses dots for blank spaces, the 0's were a bit hard on the eyes
         print()
 
 # Checks if the board is still possible to solve at the given state
@@ -105,33 +109,79 @@ def scrape_websudoku(url):
 # putting it all together in main
 def main():
     def manual_input():
-        board = [[0 for _ in range(9)] for _ in range(9)]
-        for i in range(0, 9):
-            row = input(f"Input row {i+1} (use 0 for empty spaces): ")
-            if len(row) != 9:
-                print('Error. Please input correct rows using 0 for empty spaces.')
-                return None
-            board[i] = [int(x) for x in row]
+        print("\nEnter each row as 9 digits (use 0 for empty spaces).")
+        board = [[0 for _ in range(9)] for _ in range(9)] # initialize 9x9 0 matrix
+        
+        for i in range(9):
+            while True:  # keep asking until valid input
+                print(f"\nCurrent board (Row {i+1}/9):")
+                printBoard(board)
+                
+                row = input(f"Input row {i+1}: ").strip()
+                
+                if len(row) != 9 or not row.isdigit():
+                    print("Error: Row must be 9 digits (0-9). Try again.")
+                    continue
+                
+                # update board
+                board[i] = [int(x) for x in row]
+                break
+
         return board
     
     def scrape_from_web():
-        url = input("Enter websudoku URL (e.g., https://www.websudoku.com/?level=1&set_id=***): ")
+        url = input("\nEnter websudoku URL (e.g., https://www.websudoku.com/?level=1&set_id=***): ")
         return scrape_websudoku(url)
+
+    def scrape_number():
+        while True:
+            diffInput = input("\nEnter puzzle difficulty (1=Easy, 2=Medium, 3=Hard, 4=Evil): ").lower()
+            if diffInput in ("1", "easy"):
+                diff = 1
+                break
+            elif diffInput in ("2", "medium"):
+                diff = 2
+                break
+            elif diffInput in ("3", "hard"):
+                diff = 3
+                break
+            elif diffInput in ("4", "evil"):
+                diff = 4
+                break
+            else:
+                print("\nerror, invalid input. please try again\n")
+
+        while True:
+            puzzle_num_input = input("Enter puzzle number: ").strip()
+            puzzle_num_str = re.sub(r"[^\d]", "", puzzle_num_input) # regex to account for commas or someting..
+
+            if puzzle_num_str: # if they actually put a numbah
+                puzzle_num = int(puzzle_num_str)
+                break
+            else:
+                print("invalid input. please enter a number.")
+        
+        url = "https://www.websudoku.com/?level=%d&set_id=%d" % (diff, puzzle_num)
+        return scrape_websudoku(url)
+        
     
     # maybe i could put some ascii art or something here to make it fun, idk
     print('\033c', end='') # clears terminal, turn off if it messes with things
     print("Nicholas' Sudoku Solver!!!1!!1")
     print("1. Manual input")
     print("2. Scrape from web (websudoku)")
-    choice = input("Choose an option (1/2): ")
+    print("3. Difficulty and puzzle number (also websudoku)")
+    choice = input("\nChoose an option (1/2/3): ")
     
     board = None
     if choice == '1':
         board = manual_input()
     elif choice == '2':
         board = scrape_from_web()
+    elif choice == '3':
+        board = scrape_number()
     else:
-        print("Invalid choice, please choose 1 or 2.")
+        print("Invalid choice, please choose 1,2 or 3.")
         return
     
     if board:
